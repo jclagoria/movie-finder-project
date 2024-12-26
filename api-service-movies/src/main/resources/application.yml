@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: local-movie-service
+  data:
+    mongodb:
+      uri: mongodb+srv://jlagoria:Shenkun1981@cluster0.vvfax.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: movie_set
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.springframework: INFO
+    root: INFO
+    com.service.movies: DEBUG
+  file:
+    name: logs/api-service-movies.log

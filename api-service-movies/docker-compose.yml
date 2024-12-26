@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  api-search-movies:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: ${JAR_FILE}
+    ports:
+      - "8082:8082"

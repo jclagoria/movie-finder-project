@@ -1,0 +1,1075 @@
+2024-12-23T10:44:20.217-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 7717 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T10:44:20.242-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T10:44:20.376-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T10:44:20.376-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T10:44:24.528-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T10:44:24.883-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T10:44:24.914-03:00  INFO 7717 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 5.856 seconds (process running for 8.66)
+2024-12-23T10:44:28.879-03:00 ERROR 7717 --- [tmdb-service-search] [reactor-http-epoll-2] a.w.r.e.AbstractErrorWebExceptionHandler : [09b59478-1]  500 Server Error for HTTP GET "/api/v1/search/movies?query=Jones"
+
+java.lang.IllegalStateException: Optional long parameter 'page' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
+	at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoSupplier] :
+	reactor.core.publisher.Mono.fromSupplier(Mono.java:718)
+	org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+Error has been observed at the following site(s):
+	*____Mono.fromSupplier ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+	*___Mono.switchIfEmpty ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.resolveArgument(AbstractNamedValueArgumentResolver.java:121)
+	|_ Mono.defaultIfEmpty ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:267)
+	|_      Mono.doOnError ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:268)
+	*_____________Mono.zip ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:275)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+	*___________Mono.defer ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	*____________Mono.then ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	|_       Mono.doOnNext ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:284)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:285)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:168)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:172)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*_________Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handle(DispatcherHandler.java:154)
+	*___________Mono.defer ⇢ at org.springframework.web.server.handler.DefaultWebFilterChain.filter(DefaultWebFilterChain.java:106)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:85)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	*___________Mono.error ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler$CheckpointInsertingHandler.handle(ExceptionHandlingWebHandler.java:106)
+	|_          checkpoint ⇢ HTTP GET "/api/v1/search/movies?query=Jones" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:239) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:126) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1211) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:716) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:486) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.handleDefaultHttpRequest(HttpServerOperations.java:843) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:776) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:267) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:799) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:501) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-23T10:44:49.242-03:00 ERROR 7717 --- [tmdb-service-search] [reactor-http-epoll-2] a.w.r.e.AbstractErrorWebExceptionHandler : [09b59478-2]  500 Server Error for HTTP GET "/api/v1/search/movies?query=Jones"
+
+java.lang.IllegalStateException: Optional long parameter 'page' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
+	at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoSupplier] :
+	reactor.core.publisher.Mono.fromSupplier(Mono.java:718)
+	org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+Error has been observed at the following site(s):
+	*____Mono.fromSupplier ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+	*___Mono.switchIfEmpty ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.resolveArgument(AbstractNamedValueArgumentResolver.java:121)
+	|_ Mono.defaultIfEmpty ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:267)
+	|_      Mono.doOnError ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:268)
+	*_____________Mono.zip ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:275)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+	*___________Mono.defer ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	*____________Mono.then ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	|_       Mono.doOnNext ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:284)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:285)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:168)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:172)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*_________Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handle(DispatcherHandler.java:154)
+	*___________Mono.defer ⇢ at org.springframework.web.server.handler.DefaultWebFilterChain.filter(DefaultWebFilterChain.java:106)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:85)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	*___________Mono.error ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler$CheckpointInsertingHandler.handle(ExceptionHandlingWebHandler.java:106)
+	|_          checkpoint ⇢ HTTP GET "/api/v1/search/movies?query=Jones" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:239) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:126) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1211) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:716) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:486) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.handleDefaultHttpRequest(HttpServerOperations.java:843) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:776) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:267) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:799) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:501) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-23T10:44:51.414-03:00  INFO 7717 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T10:44:51.416-03:00  INFO 7717 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T10:44:55.430-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 7908 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T10:44:55.432-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T10:44:55.477-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T10:44:55.477-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T10:44:56.911-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T10:44:57.021-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T10:44:57.030-03:00  INFO 7908 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.082 seconds (process running for 3.336)
+2024-12-23T10:45:03.788-03:00 ERROR 7908 --- [tmdb-service-search] [reactor-http-epoll-2] a.w.r.e.AbstractErrorWebExceptionHandler : [56270140-1]  500 Server Error for HTTP GET "/api/v1/search/movies?query=Jones"
+
+java.lang.IllegalStateException: Optional long parameter 'page' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
+	at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoSupplier] :
+	reactor.core.publisher.Mono.fromSupplier(Mono.java:718)
+	org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+Error has been observed at the following site(s):
+	*____Mono.fromSupplier ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+	*___Mono.switchIfEmpty ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.resolveArgument(AbstractNamedValueArgumentResolver.java:121)
+	|_ Mono.defaultIfEmpty ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:267)
+	|_      Mono.doOnError ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:268)
+	*_____________Mono.zip ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:275)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+	*___________Mono.defer ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	*____________Mono.then ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	|_       Mono.doOnNext ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:284)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:285)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:168)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:172)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*_________Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handle(DispatcherHandler.java:154)
+	*___________Mono.defer ⇢ at org.springframework.web.server.handler.DefaultWebFilterChain.filter(DefaultWebFilterChain.java:106)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:85)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	*___________Mono.error ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler$CheckpointInsertingHandler.handle(ExceptionHandlingWebHandler.java:106)
+	|_          checkpoint ⇢ HTTP GET "/api/v1/search/movies?query=Jones" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:239) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:126) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1211) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:716) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:486) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.handleDefaultHttpRequest(HttpServerOperations.java:843) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:776) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:267) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:799) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:501) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-23T10:45:29.189-03:00 ERROR 7908 --- [tmdb-service-search] [reactor-http-epoll-2] a.w.r.e.AbstractErrorWebExceptionHandler : [56270140-2]  500 Server Error for HTTP GET "/api/v1/search/movies?query=Jones"
+
+java.lang.IllegalStateException: Optional long parameter 'page' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
+	at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoSupplier] :
+	reactor.core.publisher.Mono.fromSupplier(Mono.java:718)
+	org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+Error has been observed at the following site(s):
+	*____Mono.fromSupplier ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.getDefaultValue(AbstractNamedValueArgumentResolver.java:227)
+	*___Mono.switchIfEmpty ⇢ at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.resolveArgument(AbstractNamedValueArgumentResolver.java:121)
+	|_ Mono.defaultIfEmpty ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:267)
+	|_      Mono.doOnError ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:268)
+	*_____________Mono.zip ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:275)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+	*___________Mono.defer ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	*____________Mono.then ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:283)
+	|_       Mono.doOnNext ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:284)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handle(RequestMappingHandlerAdapter.java:285)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:168)
+	|_        Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handleResultMono(DispatcherHandler.java:172)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*___________Mono.error ⇢ at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter.handleException(RequestMappingHandlerAdapter.java:340)
+	*_________Mono.flatMap ⇢ at org.springframework.web.reactive.DispatcherHandler.handle(DispatcherHandler.java:154)
+	*___________Mono.defer ⇢ at org.springframework.web.server.handler.DefaultWebFilterChain.filter(DefaultWebFilterChain.java:106)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	|_  Mono.onErrorResume ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:85)
+	|_      Mono.doOnError ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler.handle(ExceptionHandlingWebHandler.java:84)
+	*___________Mono.error ⇢ at org.springframework.web.server.handler.ExceptionHandlingWebHandler$CheckpointInsertingHandler.handle(ExceptionHandlingWebHandler.java:106)
+	|_          checkpoint ⇢ HTTP GET "/api/v1/search/movies?query=Jones" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:287) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:239) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:126) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1211) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:716) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:486) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.handleDefaultHttpRequest(HttpServerOperations.java:843) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:776) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:267) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:799) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:501) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-23T11:24:56.782-03:00  INFO 7908 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T11:24:56.784-03:00  INFO 7908 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T11:26:51.129-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 11494 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T11:26:51.132-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T11:26:51.175-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T11:26:51.175-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T11:26:52.526-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T11:26:52.635-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T11:26:52.643-03:00  INFO 11494 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.971 seconds (process running for 3.037)
+2024-12-23T13:09:56.630-03:00  INFO 11494 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T13:09:56.633-03:00  INFO 11494 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T13:10:01.641-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 17117 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T13:10:01.644-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:10:01.707-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T13:10:01.708-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T13:10:03.579-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T13:10:03.705-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T13:10:03.713-03:00  INFO 17117 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.6 seconds (process running for 3.85)
+2024-12-23T13:41:58.089-03:00  INFO 17117 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Request: GET https://api.themoviedb.org/3/search/movie?query=Jones&language=en-US&page=1
+2024-12-23T13:41:59.980-03:00  INFO 17117 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Response Status: 200 OK
+2024-12-23T15:25:00.493-03:00  INFO 17117 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:25:00.495-03:00  INFO 17117 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:25:05.428-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 24216 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:25:05.431-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:25:05.471-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:25:05.471-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:25:06.712-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:25:06.810-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:25:06.817-03:00  INFO 24216 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.835 seconds (process running for 2.781)
+2024-12-23T15:25:55.374-03:00  INFO 24216 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:25:55.376-03:00  INFO 24216 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:25:58.396-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 24387 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:25:58.398-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:25:58.435-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:25:58.436-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:25:59.676-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:25:59.769-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:25:59.776-03:00  INFO 24387 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.804 seconds (process running for 2.718)
+2024-12-23T15:26:49.326-03:00  INFO 24387 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:26:49.329-03:00  INFO 24387 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:27:05.249-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 24582 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:27:05.251-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:27:05.295-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:27:05.295-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:27:06.531-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:27:06.630-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:27:06.637-03:00  INFO 24582 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.792 seconds (process running for 2.693)
+2024-12-23T15:28:39.587-03:00  INFO 24582 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:28:39.589-03:00  INFO 24582 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:29:12.432-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 24808 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:29:12.434-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:29:12.473-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:29:12.474-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:29:14.082-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:29:14.209-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:29:14.219-03:00  INFO 24808 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.275 seconds (process running for 3.351)
+2024-12-23T15:31:02.273-03:00  INFO 24808 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:31:02.276-03:00  INFO 24808 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:31:06.527-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 25169 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:31:06.529-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:31:06.573-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:31:06.574-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:31:07.947-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:31:08.054-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:31:08.062-03:00  INFO 25169 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.987 seconds (process running for 2.983)
+2024-12-23T15:33:22.886-03:00  INFO 25169 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:33:22.900-03:00  INFO 25169 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:33:27.859-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 25401 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:33:27.861-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:33:27.918-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:33:27.918-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:33:29.393-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:33:29.555-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:33:29.569-03:00  INFO 25401 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.253 seconds (process running for 3.245)
+2024-12-23T15:35:16.743-03:00  INFO 25401 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Request: GET https://api.themoviedb.org/3/search/movie?query=%2520%2520%2520%2520%2520&language=en-US&page=1
+2024-12-23T15:35:16.754-03:00  INFO 25401 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:35:17.843-03:00  INFO 25401 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Response Status: 200 OK
+2024-12-23T15:35:17.916-03:00  INFO 25401 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:35:24.740-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 25679 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:35:24.742-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:35:24.783-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:35:24.783-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:35:26.172-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:35:26.282-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:35:26.289-03:00  INFO 25679 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.997 seconds (process running for 2.982)
+2024-12-23T15:35:56.294-03:00  INFO 25679 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:35:56.297-03:00  INFO 25679 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:36:00.932-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 25829 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:36:00.934-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:36:00.983-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:36:00.984-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:36:02.361-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:36:02.466-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:36:02.474-03:00  INFO 25829 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.981 seconds (process running for 2.978)
+2024-12-23T15:36:12.761-03:00  INFO 25829 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:36:12.767-03:00  INFO 25829 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Request: GET https://api.themoviedb.org/3/search/movie?query=%2520%2520%2520%2520%2520&language=en-US&page=1
+2024-12-23T15:36:13.935-03:00  INFO 25829 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Response Status: 200 OK
+2024-12-23T15:36:14.104-03:00  INFO 25829 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:36:51.937-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 25999 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:36:51.939-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:36:51.980-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:36:51.980-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:36:53.342-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:36:53.454-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:36:53.461-03:00  INFO 25999 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.961 seconds (process running for 2.994)
+2024-12-23T15:38:35.800-03:00  INFO 25999 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:38:35.803-03:00  INFO 25999 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:38:39.917-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 26246 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:38:39.919-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:38:39.962-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:38:39.962-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:38:41.341-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:38:41.454-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:38:41.462-03:00  INFO 26246 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.985 seconds (process running for 2.999)
+2024-12-23T15:39:19.287-03:00  INFO 26246 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:39:19.291-03:00  INFO 26246 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:39:23.707-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 26404 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:39:23.710-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:39:23.756-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:39:23.756-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:39:25.189-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:39:25.290-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:39:25.298-03:00  INFO 26404 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.053 seconds (process running for 3.011)
+2024-12-23T15:39:51.122-03:00  INFO 26404 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:39:51.150-03:00  INFO 26404 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:40:26.679-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 26659 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:40:26.681-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:40:26.719-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:40:26.720-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:40:27.983-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:40:28.101-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:40:28.108-03:00  INFO 26659 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.85 seconds (process running for 2.746)
+2024-12-23T15:42:00.893-03:00  INFO 26659 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:42:00.896-03:00  INFO 26659 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:42:29.022-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 26996 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:42:29.024-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:42:29.062-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:42:29.062-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:42:30.276-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:42:30.372-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:42:30.379-03:00  INFO 26996 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.756 seconds (process running for 2.662)
+2024-12-23T15:44:46.561-03:00  INFO 26996 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:44:46.563-03:00  INFO 26996 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:44:53.302-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 27394 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:44:53.304-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:44:53.344-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:44:53.344-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:44:54.641-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:44:54.741-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:44:54.748-03:00  INFO 27394 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.884 seconds (process running for 2.866)
+2024-12-23T15:45:17.778-03:00  INFO 27394 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:45:17.781-03:00  INFO 27394 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:45:21.260-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 27536 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:45:21.262-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:45:21.300-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:45:21.300-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:45:22.535-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:45:22.643-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:45:22.651-03:00  INFO 27536 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.811 seconds (process running for 2.666)
+2024-12-23T15:45:44.981-03:00  INFO 27536 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:45:45.007-03:00  INFO 27536 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:49:02.393-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 27951 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:49:02.396-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:49:02.442-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:49:02.443-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:49:03.997-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:49:04.348-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:49:04.355-03:00  INFO 27951 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.431 seconds (process running for 3.45)
+2024-12-23T15:55:01.704-03:00  INFO 27951 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:55:01.707-03:00  INFO 27951 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:55:11.970-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 28586 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:55:11.973-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:55:12.021-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:55:12.021-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:55:13.566-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:55:13.686-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:55:13.696-03:00  INFO 28586 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.262 seconds (process running for 3.508)
+2024-12-23T15:59:06.002-03:00  WARN 28586 --- [tmdb-service-search] [reactor-http-epoll-2] s.w.r.r.m.a.RequestMappingHandlerAdapter : [8948b870-1] Failure in @ExceptionHandler com.tmdb.api.search.exception.GlobalExceptionHandler#handleMethodValidationException(HandlerMethodValidationException)
+
+java.lang.NullPointerException: Cannot invoke "Object.toString()" because the return value of "org.springframework.validation.method.ParameterValidationResult.getContainerKey()" is null
+	at com.tmdb.api.search.exception.GlobalExceptionHandler.lambda$handleMethodValidationException$0(GlobalExceptionHandler.java:32) ~[classes/:na]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoFlatMap] :
+	reactor.core.publisher.Mono.flatMap(Mono.java:3179)
+	org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+Error has been observed at the following site(s):
+	*__Mono.flatMap ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+Original Stack Trace:
+		at com.tmdb.api.search.exception.GlobalExceptionHandler.lambda$handleMethodValidationException$0(GlobalExceptionHandler.java:32) ~[classes/:na]
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+		at com.tmdb.api.search.exception.GlobalExceptionHandler.handleMethodValidationException(GlobalExceptionHandler.java:31) ~[classes/:na]
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+		at org.springframework.web.reactive.result.method.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:200) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onSubscribe(FluxOnErrorResume.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onError(FluxPeekFuseable.java:234) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onError(MonoIgnoreThen.java:280) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:136) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:148) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1211) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:716) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:486) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.handleDefaultHttpRequest(HttpServerOperations.java:843) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:776) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:267) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:799) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:501) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-23T15:59:06.015-03:00  WARN 28586 --- [tmdb-service-search] [reactor-http-epoll-2] s.w.r.r.m.a.RequestMappingHandlerAdapter : [8948b870-1] Failure in @ExceptionHandler com.tmdb.api.search.exception.GlobalExceptionHandler#handleMethodValidationException(HandlerMethodValidationException)
+
+java.lang.NullPointerException: Cannot invoke "Object.toString()" because the return value of "org.springframework.validation.method.ParameterValidationResult.getContainerKey()" is null
+	at com.tmdb.api.search.exception.GlobalExceptionHandler.lambda$handleMethodValidationException$0(GlobalExceptionHandler.java:32) ~[classes/:na]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoFlatMap] :
+	reactor.core.publisher.Mono.flatMap(Mono.java:3179)
+	org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+Error has been observed at the following site(s):
+	*__Mono.flatMap ⇢ at org.springframework.web.reactive.result.method.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:187)
+Original Stack Trace:
+		at com.tmdb.api.search.exception.GlobalExceptionHandler.lambda$handleMethodValidationException$0(GlobalExceptionHandler.java:32) ~[classes/:na]
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+		at com.tmdb.api.search.exception.GlobalExceptionHandler.handleMethodValidationException(GlobalExceptionHandler.java:31) ~[classes/:na]
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+		at org.springframework.web.reactive.result.method.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:200) ~[spring-webflux-6.2.1.jar:6.2.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onSubscribe(FluxOnErrorResume.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.error(Operators.java:198) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:149) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onSubscribe(FluxOnErrorResume.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onError(FluxPeekFuseable.java:234) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onError(MonoIgnoreThen.java:280) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:136) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:148) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.7.1.jar:3.7.1]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1211) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:716) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:486) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.handleDefaultHttpRequest(HttpServerOperations.java:843) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:776) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115) ~[reactor-netty-core-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:267) ~[reactor-netty-http-1.2.1.jar:1.2.1]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868) ~[netty-transport-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:799) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:501) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.116.Final.jar:4.1.116.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-23T15:59:06.024-03:00  INFO 28586 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T15:59:06.109-03:00  INFO 28586 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T15:59:14.853-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 29428 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T15:59:14.857-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T15:59:14.908-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T15:59:14.909-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T15:59:16.494-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T15:59:16.620-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T15:59:16.629-03:00  INFO 29428 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.289 seconds (process running for 3.529)
+2024-12-23T16:01:14.759-03:00  INFO 29428 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:01:14.761-03:00  INFO 29428 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:01:19.326-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 29645 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:01:19.328-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:01:19.393-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:01:19.394-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:01:21.298-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:01:22.301-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:01:22.308-03:00  INFO 29645 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 3.601 seconds (process running for 4.957)
+2024-12-23T16:01:34.643-03:00  INFO 29645 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Request: GET https://api.themoviedb.org/3/search/movie?query=Jones&language=en-US&page=1
+2024-12-23T16:01:36.015-03:00  INFO 29645 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Response Status: 200 OK
+2024-12-23T16:04:07.024-03:00  INFO 29645 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:04:07.026-03:00  INFO 29645 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:04:12.662-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 29911 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:04:12.667-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:04:12.722-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:04:12.723-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:04:14.340-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:04:14.460-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:04:14.469-03:00  INFO 29911 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.329 seconds (process running for 3.633)
+2024-12-23T16:11:26.864-03:00  INFO 29911 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:11:26.868-03:00  INFO 29911 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:11:37.702-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 30386 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:11:37.704-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:11:37.742-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:11:37.743-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:11:39.273-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:11:39.374-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:11:39.382-03:00  INFO 30386 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.083 seconds (process running for 3.036)
+2024-12-23T16:12:15.054-03:00  INFO 30386 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:12:15.101-03:00  INFO 30386 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:12:19.826-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 30571 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:12:19.828-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:12:19.868-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:12:19.868-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:12:21.141-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:12:21.243-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:12:21.250-03:00  INFO 30571 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.834 seconds (process running for 2.697)
+2024-12-23T16:15:15.399-03:00  INFO 30571 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:15:15.443-03:00  INFO 30571 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:15:19.708-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 31301 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:15:19.711-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:15:19.751-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:15:19.751-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:15:21.041-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:15:21.163-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:15:21.170-03:00  INFO 31301 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.869 seconds (process running for 2.94)
+2024-12-23T16:16:41.429-03:00  INFO 31301 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:16:41.431-03:00  INFO 31301 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:16:45.912-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 31500 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:16:45.914-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:16:45.952-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:16:45.952-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:16:47.283-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:16:47.388-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:16:47.395-03:00  INFO 31500 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.879 seconds (process running for 2.761)
+2024-12-23T16:30:55.664-03:00  INFO 31500 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:30:55.666-03:00  INFO 31500 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T16:35:53.380-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 33618 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T16:35:53.382-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T16:35:53.425-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T16:35:53.426-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T16:35:54.840-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T16:35:54.941-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T16:35:54.948-03:00  INFO 33618 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.05 seconds (process running for 3.13)
+2024-12-23T16:36:10.173-03:00  INFO 33618 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Request: GET https://api.themoviedb.org/3/search/movie?query=Jones&language=en-US&page=1
+2024-12-23T16:36:11.417-03:00  INFO 33618 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Response Status: 200 OK
+2024-12-23T16:58:23.071-03:00  INFO 33618 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T16:58:23.075-03:00  INFO 33618 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T17:00:56.758-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 36289 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T17:00:56.760-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T17:00:56.812-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T17:00:56.812-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T17:00:58.358-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T17:00:58.458-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T17:00:58.465-03:00  INFO 36289 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.147 seconds (process running for 3.198)
+2024-12-23T17:02:36.614-03:00  INFO 36289 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T17:02:36.619-03:00  INFO 36289 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T17:02:43.726-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 36503 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T17:02:43.729-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T17:02:43.771-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T17:02:43.771-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T17:02:45.171-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T17:02:45.273-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T17:02:45.280-03:00  INFO 36503 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 2.009 seconds (process running for 3.084)
+2024-12-23T17:03:15.376-03:00  INFO 36503 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T17:03:15.379-03:00  INFO 36503 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete
+2024-12-23T17:03:19.424-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Starting TmdbServiceSearchApplication using Java 21.0.4 with PID 36681 (/home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search/target/classes started by jlagoria in /home/jlagoria/mount/Data/dev/proyects/personal-site/movie-finder-service/tmdb-service-search)
+2024-12-23T17:03:19.426-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T17:03:19.466-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-23T17:03:19.466-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-23T17:03:20.819-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-23T17:03:20.929-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2024-12-23T17:03:20.936-03:00  INFO 36681 --- [tmdb-service-search] [restartedMain] c.t.a.s.TmdbServiceSearchApplication     : Started TmdbServiceSearchApplication in 1.932 seconds (process running for 2.852)
+2024-12-23T17:03:57.868-03:00  INFO 36681 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Request: GET https://api.themoviedb.org/3/search/movie?query=Jones&language=en-US&page=1
+2024-12-23T17:03:59.108-03:00  INFO 36681 --- [tmdb-service-search] [reactor-http-epoll-2] .a.s.a.r.c.WebFluxConfig$$SpringCGLIB$$0 : Response Status: 200 OK
+2024-12-23T17:37:46.016-03:00  INFO 36681 --- [tmdb-service-search] [SpringApplicationShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-23T17:37:46.019-03:00  INFO 36681 --- [tmdb-service-search] [netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete

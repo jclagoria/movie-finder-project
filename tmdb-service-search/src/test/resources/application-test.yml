@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: tmdb-service-search
+server:
+  port: 8080
+
+tmdb:
+  api:
+    base-url: https://api.themoviedb.org/3
+    api-key: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODdiNDNmYzJlY2UwYjEzYWYwODAzYjJjNDA3MzYzNyIsIm5iZiI6MTYxNzc2Mzc1OC43MTcsInN1YiI6IjYwNmQxZGFlMGQyZjUzMDA0MGE1OWI3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GVV_o0MVybZb4pG3gUwzCU6vaOl33rjr5DQ4BLfF-P4
+  cache:
+    ttl: 600 # Cache time-to-live in seconds
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 5
+        slidingWindowSize: 100
+        slidingWindowType: COUNT_BASED
+        waitDurationInOpenState: 10s
+        minimumNumberOfCalls: 10
+        recordExceptions:
+          - java.net.ConnectException
+          - java.net.SocketTimeoutException
+          - org.springframework.web.reactive.function.client.WebClientResponseException
+        ignoreExceptions:
+          - java.lang.IllegalArgumentException
+    instances:
+      tmdbApiCircuitBreaker:
+        baseConfig: default
+
+
+logging:
+  level:
+    root: INFO
+    com.example.tmdbservice: DEBUG
+  file:
+    name: logs/tmdb-service.log
