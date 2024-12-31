@@ -7,7 +7,7 @@ server:
 tmdb:
   api:
     base-url: https://api.themoviedb.org/3
-    api-key: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODdiNDNmYzJlY2UwYjEzYWYwODAzYjJjNDA3MzYzNyIsIm5iZiI6MTYxNzc2Mzc1OC43MTcsInN1YiI6IjYwNmQxZGFlMGQyZjUzMDA0MGE1OWI3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GVV_o0MVybZb4pG3gUwzCU6vaOl33rjr5DQ4BLfF-P4
+    api-key: <TOKEN-PERSONAL-TMDB>
   cache:
     ttl: 600 # Cache time-to-live in seconds
 

@@ -1,6 +1,6 @@
 package com.tmdb.api.search.service;
 
-import com.tmdb.api.search.dto.SearchRequest;
+import com.tmdb.api.search.dto.SearchResponse;
 import reactor.core.publisher.Mono;
 
 public interface TMDBSearchService {
@@ -18,7 +18,7 @@ public interface TMDBSearchService {
      * @param year                General year filter for the movies
      * @return Mono<SearchRequest> Reactive wrapper containing search results or empty if an error occurs
      */
-    Mono<SearchRequest> fetchSearchMovie(String query, boolean includeAdult, String language,
-                                         String primaryReleaseYear, long page, String region, String year);
+    Mono<SearchResponse> fetchSearchMovie(String query, boolean includeAdult, String language,
+                                          String primaryReleaseYear, long page, String region, String year);
 
 }

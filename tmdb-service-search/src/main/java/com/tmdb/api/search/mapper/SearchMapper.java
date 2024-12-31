@@ -1,7 +1,7 @@
 package com.tmdb.api.search.mapper;
 
 import com.tmdb.api.search.dto.SearchItem;
-import com.tmdb.api.search.dto.SearchRequest;
+import com.tmdb.api.search.dto.SearchResponse;
 import com.tmdb.api.search.model.MovieItem;
 import com.tmdb.api.search.model.SearchMovieResponse;
 import org.slf4j.Logger;
@@ -13,7 +13,7 @@ public class SearchMapper {
 
     private static final Logger logger = LoggerFactory.getLogger(SearchMapper.class);
 
-    public static SearchRequest mapToSearchRequest(SearchMovieResponse response) {
+    public static SearchResponse mapToSearchRequest(SearchMovieResponse response) {
         List<SearchItem> searchItems = response.getResults()
                 .stream()
                 .map(movieItem -> {
@@ -26,7 +26,7 @@ public class SearchMapper {
                 })
                 .toList();
 
-        return new SearchRequest(
+        return new SearchResponse(
                 searchItems,
                 response.getPage(),
                 response.getTotal_pages(),

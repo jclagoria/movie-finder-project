@@ -2,6 +2,7 @@ package com.tmdb.api.search.service;
 
 import com.tmdb.api.search.adapter.rest.client.ApiExternalCall;
 import com.tmdb.api.search.dto.SearchRequest;
+import com.tmdb.api.search.dto.SearchResponse;
 import com.tmdb.api.search.mapper.SearchMapper;
 import com.tmdb.api.search.model.SearchMovieResponse;
 import org.slf4j.Logger;
@@ -26,8 +27,8 @@ public class TMDBSearchServiceImpl implements TMDBSearchService {
     }
 
     @Override
-    public Mono<SearchRequest> fetchSearchMovie(String query, boolean includeAdult, String language,
-                                                String primaryReleaseYear, long page, String region, String year) {
+    public Mono<SearchResponse> fetchSearchMovie(String query, boolean includeAdult, String language,
+                                                 String primaryReleaseYear, long page, String region, String year) {
 
         String urlSearch = UriComponentsBuilder.fromUriString("/search/movie")
                 .queryParam("query", query)
@@ -49,11 +50,7 @@ public class TMDBSearchServiceImpl implements TMDBSearchService {
         return apiExternalCall.getMonoObject(urlSearch, SearchMovieResponse.class)
                 .map(SearchMapper::mapToSearchRequest)
                 .doOnNext(response -> logger.info("Successfully fetched movies for query: {}, Total Results: {}",
-                        query, response.totalResults()))
-                .onErrorResume(e -> {
-                    logger.error("Fallback executed in fetchSearchMovie due to: {}", e.getMessage());
-                    return Mono.empty();
-                });
+                        query, response.totalResults()));
     }
 
 }

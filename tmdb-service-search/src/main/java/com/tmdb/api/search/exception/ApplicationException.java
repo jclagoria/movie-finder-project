@@ -8,4 +8,8 @@ public class ApplicationException extends RuntimeException {
         super(message);
         this.statusCode = statusCode;
     }
+
+    public long getStatusCode() {
+        return statusCode;
+    }
 }

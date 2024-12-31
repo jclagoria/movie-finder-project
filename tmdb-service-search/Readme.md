@@ -16,17 +16,17 @@ The application is built with reactive programming using Spring WebFlux
 ### Dependencies
 The application uses the following dependencies:
 - **Spring Boot Starter WebFlux**: For reactive REST API development.
-- - **Spring Booty Data Mongodb Reactive**: For manage the connection and work with MongoDB instance.
+- **Spring Booty Data Mongodb Reactive**: For manage the connection and work with MongoDB instance.
 - **SpringDoc OpenAPI**: For Swagger UI documentation.
 - **Reactor Test**: For unit testing reactive streams.
 - **Spring Boot Starter Test**: For testing.
-- **De flapdoodle Embed Mongo**: For testing the database.
 
 ### How to Build and Run
 1. Clone the Repository:
    ```bash
-    git clone https://github.com/jclagoria/movies-challenge-api.git
-    cd registration-user-api
+    git clone https://github.com/jclagoria/movie-finder-project.git
+    cd movie-finder-project
+    cd tmdb-service-search
    ```
 2. Build the Application:
    ```bash
