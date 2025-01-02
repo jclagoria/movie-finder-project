@@ -1,7 +1,7 @@
 package com.tmdb.api.search.controller;
 
 import com.tmdb.api.search.dto.SearchItem;
-import com.tmdb.api.search.dto.SearchRequest;
+import com.tmdb.api.search.dto.SearchResponse;
 import com.tmdb.api.search.service.TMDBSearchService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -45,7 +45,7 @@ public class TMDBSearchMovieControllerTest {
         String region = "US";
         String year = "2010";
 
-        SearchRequest mockResponse = getSearchRequest();
+        SearchResponse mockResponse = getSearchRequest();
         when(tmdbSearchService.fetchSearchMovie(
                         anyString(), anyBoolean(), anyString(), anyString(), anyLong(), anyString(), anyString()))
                 .thenReturn(Mono.just(mockResponse)); // Mock the service to return a valid Mono
@@ -72,7 +72,7 @@ public class TMDBSearchMovieControllerTest {
                 .jsonPath("$.totalResults").isEqualTo(1);
     }
 
-    private static SearchRequest getSearchRequest() {
+    private static SearchResponse getSearchRequest() {
         SearchItem movieItem = new SearchItem(763463,
                 false,
                 "/kYJLBFnADVnl5TWumKopZNGCrUf.jpg",
@@ -82,7 +82,7 @@ public class TMDBSearchMovieControllerTest {
                 "2022-01-01", "JONES", false, 10);
 
         // Create mock response
-        return new SearchRequest(List.of(movieItem), 1, 1, 1);
+        return new SearchResponse(List.of(movieItem), 1, 1, 1);
     }
 
     @Test

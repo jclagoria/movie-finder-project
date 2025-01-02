@@ -2,7 +2,7 @@ package com.tmdb.api.search.service;
 
 import com.tmdb.api.search.adapter.rest.client.ApiExternalCall;
 import com.tmdb.api.search.dto.SearchItem;
-import com.tmdb.api.search.dto.SearchRequest;
+import com.tmdb.api.search.dto.SearchResponse;
 import com.tmdb.api.search.mapper.SearchMapper;
 import com.tmdb.api.search.model.MovieItem;
 import com.tmdb.api.search.model.SearchMovieResponse;
@@ -79,7 +79,7 @@ class TMDBSearchServiceImplTest {
         mockResponse.setTotal_results(1);
         mockResponse.setResults(List.of(movieItem1));
 
-        SearchRequest expectedSearchRequest = new SearchRequest(List.of(movieItem), 1, 1, 1);
+        SearchResponse expectedSearchRequest = new SearchResponse(List.of(movieItem), 1, 1, 1);
 
         // Mocking static mapper
         try (MockedStatic<SearchMapper> mockedStatic = mockStatic(SearchMapper.class)) {
@@ -92,7 +92,7 @@ class TMDBSearchServiceImplTest {
                     .thenReturn(Mono.just(mockResponse));
 
             // Act
-            Mono<SearchRequest> result = service.fetchSearchMovie(query, includeAdult, language, primaryReleaseYear, page, region, year);
+            Mono<SearchResponse> result = service.fetchSearchMovie(query, includeAdult, language, primaryReleaseYear, page, region, year);
 
             // Assert
             StepVerifier.create(result)
@@ -130,7 +130,7 @@ class TMDBSearchServiceImplTest {
                 .thenReturn(Mono.error(expectedException));
 
         // Act
-        Mono<SearchRequest> result = service.fetchSearchMovie(query, includeAdult, language, primaryReleaseYear, page, region, year);
+        Mono<SearchResponse> result = service.fetchSearchMovie(query, includeAdult, language, primaryReleaseYear, page, region, year);
 
         // Assert
         StepVerifier.create(result)
@@ -157,7 +157,7 @@ class TMDBSearchServiceImplTest {
         mockResponse.setTotal_results(1);
         mockResponse.setResults(List.of());
 
-        SearchRequest expectedSearchRequest = new SearchRequest(List.of(), 1, 1, 1);
+        SearchResponse expectedSearchRequest = new SearchResponse(List.of(), 1, 1, 1);
 
         // Mocking static mapper
         try (MockedStatic<SearchMapper> mockedStatic = mockStatic(SearchMapper.class)) {
@@ -170,7 +170,7 @@ class TMDBSearchServiceImplTest {
                     .thenReturn(Mono.just(mockResponse));
 
             // Act
-            Mono<SearchRequest> result = service.fetchSearchMovie(query, includeAdult, language, primaryReleaseYear, page, region, year);
+            Mono<SearchResponse> result = service.fetchSearchMovie(query, includeAdult, language, primaryReleaseYear, page, region, year);
 
             // Assert
             StepVerifier.create(result)

@@ -22,8 +22,9 @@ The application uses the following dependencies:
 ### How to Build and Run
 1. Clone the Repository:
    ```bash
-    git clone https://github.com/jclagoria/movies-challenge-api.git
-    cd registration-user-api
+    git clone https://github.com/jclagoria/movie-finder-project.git
+    cd movie-finder-project
+    cd api-service-movies
    ```
 2. Build the Application:
    ```bash

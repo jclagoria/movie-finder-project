@@ -18,6 +18,13 @@ public class SearchMovieResponse {
     @JsonProperty
     private long totalResults;
 
+    public SearchMovieResponse(List<MovieItem> result, long page, long totalPages, long totalResults) {
+        this.result = result;
+        this.page = page;
+        this.totalPages = totalPages;
+        this.totalResults = totalResults;
+    }
+
     public List<MovieItem> getResult() {
         return result;
     }

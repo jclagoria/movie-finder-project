@@ -1,3 +1,13 @@
 spring:
   application:
     name: api-service-search
+server:
+  port: 9090
+
+movie:
+  service:
+    url: http://localhost:8081/api/v1/search/movies
+
+local:
+  service:
+    url: http://localhost:8082/api/v1/movies
