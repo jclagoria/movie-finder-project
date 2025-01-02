@@ -1,11 +1,14 @@
-package com.service.movies.error;
+package com.service.movies.exceptions;
 
-import com.service.movies.exceptions.BusinessLogicException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import reactor.core.publisher.Mono;
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -13,6 +16,8 @@ import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -25,8 +30,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
-    @ExceptionHandler(Throwable.class)
-    public ResponseEntity<Map<String, Object>> handleGlobalException(Throwable ex) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleGlobalException(Exception ex) {
         Map<String, Object> errorResponse = new HashMap<>();
         HttpStatus status;
 
@@ -56,5 +61,16 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(ex.getStatus()).body(errorResponse);
     }
+
+    @ExceptionHandler(ApplicationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Mono<Map<String, Object>> handleApplicationException(ApplicationException ex) {
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("message", ex.getMessage());
+        errorResponse.put("timestamp", Instant.now());
+
+        return Mono.just(errorResponse);
+    }
+
 
 }

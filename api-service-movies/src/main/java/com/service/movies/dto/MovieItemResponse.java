@@ -19,5 +19,4 @@ public record MovieItemResponse(
         String title,
         boolean video,
         @PositiveOrZero(message = "Popularity must be zero or positive") double voteAverage) {
-
 }

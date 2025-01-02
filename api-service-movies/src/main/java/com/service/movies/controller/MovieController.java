@@ -1,5 +1,6 @@
 package com.service.movies.controller;
 
+import com.service.movies.controller.validation.ValidQuery;
 import com.service.movies.dto.ApiMovieResponse;
 import com.service.movies.dto.MovieItemResponse;
 import com.service.movies.service.MovieService;
@@ -41,8 +42,8 @@ public class MovieController {
     /**
      * Search movies by title and adult content flag.
      *
-     * @param title The title of the movie to search for.
-     * @param adult The flag to indicate if adult content is included.
+     * @param query The title of the movie to search for.
+     * @param includeAdult The flag to indicate if adult content is included.
      * @return A Flux stream of movies matching the search criteria.
      */
     @Operation(summary = "Search movies by title and adult content flag",
@@ -55,11 +56,11 @@ public class MovieController {
     @GetMapping
     public Flux<MovieItemResponse> searchMoviesByTitle(
             @Parameter(description = "The title of the movie to search for", required = true)
-            @RequestParam @NotBlank(message = "Title must not be blank") String title,
-            @Parameter(description = "Whether to include adult content in the search results, for default is false", required = true)
-            @RequestParam boolean adult) {
-        logger.info("Searching for movies with title: '{}' and adult content: {}", title, adult);
-        return movieService.findMovieByTitleAndByIsAdultContent(title, adult);
+            @RequestParam @ValidQuery String query,
+            @Parameter(description = "Whether to include adult content in the search results, for default is false")
+            @RequestParam(name = "includeAdult", required = false, defaultValue = "false") boolean includeAdult) {
+        logger.info("Searching for movies with title: '{}' and adult content: {}", query, includeAdult);
+        return movieService.findMovieByTitleAndByIsAdultContent(query, includeAdult);
     }
 
     /**
@@ -118,7 +119,7 @@ public class MovieController {
     /**
      * Retrieve TMDB IDs by title and adult content flag.
      *
-     * @param title The title of the movie to search for.
+     * @param query The title of the movie to search for.
      * @param adult The flag to indicate if adult content is included.
      * @return A Flux stream of TMDB IDs matching the search criteria.
      */
@@ -131,11 +132,11 @@ public class MovieController {
     @GetMapping("/search")
     public Flux<Long> getTmdbIdsByTitle(
             @Parameter(description = "The title of the movie to search for", required = true)
-            @RequestParam @NotBlank(message = "Title must not be blank") String title,
+            @RequestParam @ValidQuery String query,
             @Parameter(description = "Whether to include adult content in the search results", required = true)
             @RequestParam boolean adult) {
-        logger.info("Fetching TMDB IDs for title: '{}' and adult content: {}", title, adult);
-        return movieService.findAllMoviesByQuery(title, adult);
+        logger.info("Fetching TMDB IDs for title: '{}' and adult content: {}", query, adult);
+        return movieService.findAllMoviesByQuery(query, adult);
     }
 
     /**
